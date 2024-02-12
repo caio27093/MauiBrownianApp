@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:chart="clr-namespace:MauiBrownianApp.View.ChartSK"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="MauiBrownianApp.MainPage">
+
+    <StackLayout Padding="20">
+        <Label FontSize="26" Text="Simulação de um movimento browniano"></Label>
+        <Grid Margin="0,20,0,20" VerticalOptions="FillAndExpand">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="80*" />
+                <ColumnDefinition Width="10*" />
+            </Grid.ColumnDefinitions>
+            
+            <Border
+                Grid.Column="1"
+                BackgroundColor="White"
+                Stroke="Black"
+                VerticalOptions="FillAndExpand"
+                StrokeShape="RoundRectangle 5,5,5,5">
+                    <chart:LineChart x:Name="ctLine" Data="{Binding DataPoints, Mode=TwoWay}" />
+            </Border>
+        </Grid>
+        <Button Text="Gerar simulação" Clicked="Button_Clicked"></Button>
+    </StackLayout>
+</ContentPage>
