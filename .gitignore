@@ -1,0 +1,9 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/MauiBrownianApp/bin/Debug/net7.0-windows10.0.19041.0/win10-x64
+/MauiBrownianApp/obj
+/.vs
+/MauiBrownianApp/.vs/MauiBrownianApp/v16/.suo
+/MauiBrownianApp/MauiBrownianApp.csproj.user
