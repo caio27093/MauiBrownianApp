@@ -6,24 +6,51 @@
              xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
              x:Class="MauiBrownianApp.MainPage">
 
-    <StackLayout Padding="20">
+    <StackLayout Padding="20,20,0,20">
         <Label FontSize="26" Text="Simulação de um movimento browniano"></Label>
         <Grid Margin="0,20,0,20" VerticalOptions="FillAndExpand">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*" />
-                <ColumnDefinition Width="80*" />
-                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="90*" />
+                <ColumnDefinition Width="5*" />
             </Grid.ColumnDefinitions>
             
             <Border
                 Grid.Column="1"
                 BackgroundColor="White"
                 Stroke="Black"
-                VerticalOptions="FillAndExpand"
+                HeightRequest="400"
                 StrokeShape="RoundRectangle 5,5,5,5">
                     <chart:LineChart x:Name="ctLine" Data="{Binding DataPoints, Mode=TwoWay}" />
             </Border>
         </Grid>
-        <Button Text="Gerar simulação" Clicked="Button_Clicked"></Button>
+        <ScrollView VerticalOptions="End" HeightRequest="200" Padding="0,0,20,0">
+            <StackLayout HorizontalOptions="FillAndExpand">
+                <Label Text="Preço inicial:"/>
+                <StackLayout Orientation="Horizontal">
+                    <Entry WidthRequest="150" Keyboard="Numeric" Text="{Binding Source={x:Reference stepperPrice}, Path=Value}"/>
+                    <Stepper Value="{Binding InitialPrice,Mode=TwoWay}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" x:Name="stepperPrice" Increment="10" Maximum="10000000" Minimum="0"/>
+                </StackLayout>
+                <Label Text="Volatilidade média(%):"/>
+                <StackLayout Orientation="Horizontal">
+                    <Entry WidthRequest="150" Keyboard="Numeric" Text="{Binding Source={x:Reference sliderVolatilidade}, Path=Value}"/>
+                    <Slider Value="{Binding Sigma,Mode=TwoWay}" HorizontalOptions="EndAndExpand" x:Name="sliderVolatilidade" Maximum="100" Minimum="0"/>
+                </StackLayout>
+                <Label Text="Retorno médio(%):"/>
+                <StackLayout Orientation="Horizontal">
+                    <Entry WidthRequest="150" Keyboard="Numeric" Text="{Binding Source={x:Reference sliderReturn}, Path=Value}"/>
+                    <Slider Value="{Binding Mean,Mode=TwoWay}" HorizontalOptions="EndAndExpand" x:Name="sliderReturn" Maximum="100" Minimum="0"/>
+                </StackLayout>
+                <Label Text="Tempo(dias):"/>
+                <StackLayout Orientation="Horizontal">
+                    <Entry WidthRequest="150" Keyboard="Numeric" Text="{Binding Source={x:Reference stepperDays}, Path=Value}"/>
+                    <Stepper Value="{Binding NumDays,Mode=TwoWay}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" x:Name="stepperDays" Maximum="365" Minimum="1"/>
+                </StackLayout>
+                
+                <StackLayout Orientation="Horizontal">
+                    <Button Margin="20" HorizontalOptions="Center" Text="Gerar Simulação" HeightRequest="40" Clicked="Button_Clicked"></Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </StackLayout>
 </ContentPage>
