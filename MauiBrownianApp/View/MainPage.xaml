@@ -8,7 +8,7 @@
 
     <StackLayout Padding="20,20,0,20">
         <Label FontSize="26" Text="Simulação de um movimento browniano"></Label>
-        <Grid Margin="0,20,0,20" VerticalOptions="FillAndExpand">
+        <Grid Margin="0,20,0,20" HeightRequest="450">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="5*" />
                 <ColumnDefinition Width="90*" />
@@ -24,7 +24,7 @@
                     <chart:LineChart x:Name="ctLine" Data="{Binding DataPoints, Mode=TwoWay}" />
             </Border>
         </Grid>
-        <ScrollView VerticalOptions="End" HeightRequest="200" Padding="0,0,20,0">
+        <ScrollView VerticalOptions="FillAndExpand" HeightRequest="200" Padding="0,0,20,0">
             <StackLayout HorizontalOptions="FillAndExpand">
 
                 <Label Text="Preço inicial:"/>
@@ -53,7 +53,14 @@
 
                 <Label Text="Selecione uma cor:"/>
                 <StackLayout Orientation="Horizontal">
-                    <StackLayout WidthRequest="150" BackgroundColor="{Binding HexColor,Converter={StaticResource StringToColorConverter}}" HeightRequest="50"/>
+                    
+                    <Border
+                        Stroke="White"
+                        WidthRequest="150"
+                        BackgroundColor="{Binding HexColor,Converter={StaticResource StringToColorConverter}}"
+                        HeightRequest="50"
+                        StrokeShape="RoundRectangle 5,5,5,5">
+                    </Border>
                     <Button HorizontalOptions="EndAndExpand" Text="Selecione uma cor" Clicked="SelectColor"/>
                 </StackLayout>
 

@@ -109,19 +109,19 @@
                     <Label TextColor="Black" Text="Vermelho:"/>
                     <StackLayout Orientation="Horizontal">
                         <Label HorizontalOptions="StartAndExpand" FontSize="18" TextColor="Black" Text="{Binding Red}"/>
-                        <Slider HorizontalOptions="EndAndExpand" x:Name="vermelho" Value="{Binding Red, Mode=TwoWay}" Minimum="0" Maximum="255" ThumbColor="Red"></Slider>
+                        <Slider HorizontalOptions="FillAndExpand" x:Name="vermelho" Value="{Binding Red, Mode=TwoWay}" Minimum="0" Maximum="255" ThumbColor="Red"></Slider>
                     </StackLayout>
                     
                     <Label TextColor="Black" Text="Verde:"/>
                     <StackLayout Orientation="Horizontal">
                         <Label HorizontalOptions="StartAndExpand" FontSize="18"  TextColor="Black" Text="{Binding Green}"/>
-                        <Slider HorizontalOptions="EndAndExpand" x:Name="verde" Value="{Binding Green, Mode=TwoWay}" Minimum="0" Maximum="255" ThumbColor="Green"></Slider>
+                        <Slider HorizontalOptions="FillAndExpand" x:Name="verde" Value="{Binding Green, Mode=TwoWay}" Minimum="0" Maximum="255" ThumbColor="Green"></Slider>
                     </StackLayout>
                     
                     <Label TextColor="Black" Text="Vermelho:"/>
                     <StackLayout Orientation="Horizontal">
                         <Label HorizontalOptions="StartAndExpand" FontSize="18"  TextColor="Black" Text="{Binding Blue}"/>
-                        <Slider HorizontalOptions="EndAndExpand" x:Name="azul" Value="{Binding Blue, Mode=TwoWay}" Minimum="0" Maximum="255" ThumbColor="Blue"></Slider>
+                        <Slider HorizontalOptions="FillAndExpand" x:Name="azul" Value="{Binding Blue, Mode=TwoWay}" Minimum="0" Maximum="255" ThumbColor="Blue"></Slider>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Margin="20,0,20,0" BackgroundColor="{Binding HexColor,Converter={StaticResource StringToColorConverter}}" HeightRequest="60" HorizontalOptions="FillAndExpand">
