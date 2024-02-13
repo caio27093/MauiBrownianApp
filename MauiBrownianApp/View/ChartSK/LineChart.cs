@@ -1,7 +1,4 @@
-﻿
-
-
-using SkiaSharp;
+﻿using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
 
@@ -42,50 +39,56 @@ public class LineChart : SKCanvasView
         if (Data.Count == 0)
             return;
 
-        float width = _info.Width;
-        float height = _info.Height;
-
-        using (SKPaint paint = new SKPaint())
+        SKPaint paint = new SKPaint
         {
+            Style = SKPaintStyle.Stroke,
+            Color = SKColors.Black,
+            StrokeWidth = 2
+        };
 
-            // Encontrar os valores mínimo e máximo na lista de dados
-            double minValue = Data.Min();
-            double maxValue = Data.Max();
+        int width = e.Info.Width;
+        int height = e.Info.Height;
 
-            // Calcular a escala vertical com base nos valores mínimo e máximo
-            float scaleY = (float)(height / (maxValue - minValue));
+        // Definindo as margens
+        float marginLeft = 50;
+        float marginTop = 50;
+        float marginBottom = 50;
+        float marginRight = 50;
 
-            // Calcular o deslocamento vertical para garantir que o menor valor fique na borda inferior
-            float yOffset = (float)(-minValue * scaleY);
+        // Definindo a escala
+        double maxHeight = GetMaxHeight();
+        double yScale = (height - marginTop - marginBottom) / maxHeight;
+        double xScale = (width - marginLeft - marginRight) / (Data.Count - 1);
 
-            paint.Color = SKColors.Blue;
-            paint.StrokeWidth = 2;
-            paint.Style = SKPaintStyle.Stroke;
+        // Desenhando os eixos x e y
+        _canvas.DrawLine(marginLeft, marginTop, marginLeft, height - marginBottom, paint);
+        _canvas.DrawLine(marginLeft, height - marginBottom, width - marginRight, height - marginBottom, paint);
 
-            float scaleX = width / (Data.Count - 1);
-            float pointWidth = 5; // Largura ajustável dos pontos
+        // Desenhando os pontos no gráfico
+        for (int i = 0; i < Data.Count; i++)
+        {
+            float x = (float)(marginLeft + i * xScale);
+            float y = (float)(height - marginBottom - Data[i] * yScale);
+            _canvas.DrawCircle(x, y, 5, paint);
 
-            for (int i = 0; i < Data.Count; i++)
+            if (i > 0)
             {
-                float x = i * scaleX;
-                float y = (float)Data[i] * scaleY + yOffset;
-
-                // Desenhar cada ponto no gráfico
-                _canvas.DrawCircle(x, y, pointWidth / 2, paint);
-
-                // Conectar os pontos com linhas
-                if (i > 0)
-                {
-                    float prevX = (i - 1) * scaleX;
-                    float prevY = (float)Data[i - 1] * scaleY + yOffset;
-
-                    _canvas.DrawLine(prevX, prevY, x, y, paint);
-                }
+                float prevX = (float)(marginLeft + (i - 1) * xScale);
+                float prevY = (float)(height - marginBottom - Data[i - 1] * yScale);
+                _canvas.DrawLine(prevX, prevY, x, y, paint);
             }
         }
+    }
 
-
-
+    private double GetMaxHeight()
+    {
+        double max = double.MinValue;
+        foreach (double altura in Data)
+        {
+            if (altura > max)
+                max = altura;
+        }
+        return max;
     }
 
 }

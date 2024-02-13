@@ -44,7 +44,7 @@
                 <Label Text="Tempo(dias):"/>
                 <StackLayout Orientation="Horizontal">
                     <Entry WidthRequest="150" Keyboard="Numeric" Text="{Binding Source={x:Reference stepperDays}, Path=Value}"/>
-                    <Stepper Value="{Binding NumDays,Mode=TwoWay}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" x:Name="stepperDays" Maximum="365" Minimum="1"/>
+                    <Stepper Value="{Binding NumDays,Mode=TwoWay}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" x:Name="stepperDays" Maximum="365" Minimum="0"/>
                 </StackLayout>
                 
                 <StackLayout Orientation="Horizontal">

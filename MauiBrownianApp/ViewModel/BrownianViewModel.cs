@@ -63,4 +63,13 @@ public class BrownianViewModel : BaseViewModel
     {
         DataPoints = GenerateBrownianMotion().ToList();
     }
+
+    internal string ValidaCampos()
+    {
+        //unico campo que se estiver vazio quebra o método que foi dado
+        if (NumDays == 0)
+            return "O tempo deve ser superior a zero dias";
+
+        return "";
+    }
 }
