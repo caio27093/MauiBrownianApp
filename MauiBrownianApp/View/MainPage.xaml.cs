@@ -51,4 +51,17 @@ public partial class MainPage : ContentPage
             _isBusy = false;
         }
     }
+
+    void Button_Clicked_1(System.Object sender, System.EventArgs e)
+    {
+        if (!_isBusy)
+        {
+            _isBusy = true;
+
+            _vm.ClearChart();
+            ctLine.InvalidateSurface();
+
+            _isBusy = false;
+        }
+    }
 }

@@ -53,12 +53,13 @@
 
                 <Label Text="Selecione uma cor:"/>
                 <StackLayout Orientation="Horizontal">
-                    <StackLayout WidthRequest="150" BackgroundColor="{Binding HexColor,Converter={StaticResource StringToColorConverter}}" HeightRequest="70"/>
+                    <StackLayout WidthRequest="150" BackgroundColor="{Binding HexColor,Converter={StaticResource StringToColorConverter}}" HeightRequest="50"/>
                     <Button HorizontalOptions="EndAndExpand" Text="Selecione uma cor" Clicked="SelectColor"/>
                 </StackLayout>
 
                 <StackLayout Orientation="Horizontal">
-                    <Button Margin="20" HorizontalOptions="Center" Text="Gerar Simulação" HeightRequest="40" Clicked="Button_Clicked"></Button>
+                    <Button Margin="0" Text="Gerar Simulação" HeightRequest="40" Clicked="Button_Clicked"></Button>
+                    <Button Margin="20,0,20,0" Text="Limpar Simulação" HeightRequest="40" Clicked="Button_Clicked_1"></Button>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

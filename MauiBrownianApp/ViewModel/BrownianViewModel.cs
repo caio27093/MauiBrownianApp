@@ -6,8 +6,8 @@ namespace MauiBrownianApp.ViewModel;
 
 public class BrownianViewModel : BaseViewModel
 {
-    private BrownianModel _data = new BrownianModel();
-    public BrownianModel DataPoints
+    private List<BrownianModel> _data = new List<BrownianModel>();
+    public List<BrownianModel> DataPoints
     {
         get => _data;
         set => SetProperty(ref _data, value);
@@ -67,9 +67,9 @@ public class BrownianViewModel : BaseViewModel
         return prices;
 	}
 
-    internal void UpdateChart()
+    internal void ClearChart()
     {
-        DataPoints.DataValue = GenerateBrownianMotion().ToList();
+        DataPoints = new List<BrownianModel>();
     }
 
     internal string ValidaCampos()
@@ -77,6 +77,8 @@ public class BrownianViewModel : BaseViewModel
         //unico campo que se estiver vazio quebra o método que foi dado
         if (NumDays == 0)
             return "O tempo deve ser superior a zero dias";
+        if (DataPoints.Any() && DataPoints.FirstOrDefault(a => a.DataValue.Count != NumDays) != null)
+            return "A quantidade de dias deve ser a mesma que os outros pontos para manter a integridade do gráfico";
 
         return "";
     }
@@ -84,6 +86,14 @@ public class BrownianViewModel : BaseViewModel
     internal void SetColor(string obj)
     {
         HexColor = obj;
-        DataPoints.ColorHex = obj;
+    }
+
+    internal void UpdateChart()
+    {
+        DataPoints.Add(new()
+        {
+            ColorHex = HexColor,
+            DataValue = GenerateBrownianMotion().ToList()
+        });
     }
 }

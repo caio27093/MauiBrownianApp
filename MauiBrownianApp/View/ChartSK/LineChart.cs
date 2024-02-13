@@ -11,14 +11,14 @@ public class LineChart : SKCanvasView
     private SKImageInfo _info;
 
     #region 
-    public BrownianModel Data
+    public List<BrownianModel> Data
     {
-        get => (BrownianModel)GetValue(DataProperty);
+        get => (List<BrownianModel>)GetValue(DataProperty);
         set => SetValue(DataProperty, value);
     }
 
     public static readonly BindableProperty DataProperty = BindableProperty.Create(
-        nameof(Data), typeof(BrownianModel), typeof(LineChart), new BrownianModel(), propertyChanged: OnBindablePropertyChanged);
+        nameof(Data), typeof(List<BrownianModel>), typeof(LineChart), new List<BrownianModel>(), propertyChanged: OnBindablePropertyChanged);
 
     #endregion
 
@@ -35,14 +35,13 @@ public class LineChart : SKCanvasView
         _canvas.Clear();
         _info = e.Info;
 
-        if (Data.DataValue.Count == 0)
+        if (!Data.Any())
             return;
 
-        var colorFromData = SKColor.TryParse(Data.ColorHex, out SKColor newcolor);
         SKPaint paint = new SKPaint
         {
             Style = SKPaintStyle.Stroke,
-            Color = colorFromData ? newcolor : SKColors.Black,
+            Color = SKColors.Black,
             StrokeWidth = 2
         };
 
@@ -57,38 +56,54 @@ public class LineChart : SKCanvasView
 
         // Definindo a escala
         double maxHeight = GetMaxHeight();
-        double yScale = (height - marginTop - marginBottom) / maxHeight;
-        double xScale = (width - marginLeft - marginRight) / (Data.DataValue.Count - 1);
 
-        // Desenhando os eixos x e y
-        _canvas.DrawLine(marginLeft, marginTop, marginLeft, height - marginBottom, paint);
-        _canvas.DrawLine(marginLeft, height - marginBottom, width - marginRight, height - marginBottom, paint);
-
-        // Desenhando os pontos no gráfico
-        for (int i = 0; i < Data.DataValue.Count; i++)
+        foreach (var item in Data)
         {
-            float x = (float)(marginLeft + i * xScale);
-            float y = (float)(height - marginBottom - Data.DataValue[i] * yScale);
-            _canvas.DrawCircle(x, y, 5, paint);
-
-            if (i > 0)
+            var colorFromData = SKColor.TryParse(item.ColorHex, out SKColor newcolor);
+            SKPaint paintLine = new SKPaint
             {
-                float prevX = (float)(marginLeft + (i - 1) * xScale);
-                float prevY = (float)(height - marginBottom - Data.DataValue[i - 1] * yScale);
-                _canvas.DrawLine(prevX, prevY, x, y, paint);
+                Style = SKPaintStyle.Stroke,
+                Color = colorFromData ? newcolor : SKColors.Black,
+                StrokeWidth = 2
+            };
+
+
+            double yScale = (height - marginTop - marginBottom) / maxHeight;
+            double xScale = (width - marginLeft - marginRight) / (item.DataValue.Count - 1);
+
+            // Desenhando os eixos x e y
+            _canvas.DrawLine(marginLeft, marginTop, marginLeft, height - marginBottom, paint);
+            _canvas.DrawLine(marginLeft, height - marginBottom, width - marginRight, height - marginBottom, paint);
+
+            // Desenhando os pontos no gráfico
+            for (int i = 0; i < item.DataValue.Count; i++)
+            {
+                float x = (float)(marginLeft + i * xScale);
+                float y = (float)(height - marginBottom - item.DataValue[i] * yScale);
+                _canvas.DrawCircle(x, y, 5, paintLine);
+
+                if (i > 0)
+                {
+                    float prevX = (float)(marginLeft + (i - 1) * xScale);
+                    float prevY = (float)(height - marginBottom - item.DataValue[i - 1] * yScale);
+                    _canvas.DrawLine(prevX, prevY, x, y, paintLine);
+                }
             }
         }
+
     }
 
     private double GetMaxHeight()
     {
         double max = double.MinValue;
-        foreach (double altura in Data.DataValue)
+        foreach (var item in Data)
         {
-            if (altura > max)
-                max = altura;
+            foreach (double altura in item.DataValue)
+            {
+                if (altura > max)
+                    max = altura;
+            }
         }
         return max;
     }
-
 }
