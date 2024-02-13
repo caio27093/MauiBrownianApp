@@ -96,4 +96,9 @@ public class BrownianViewModel : BaseViewModel
             DataValue = GenerateBrownianMotion().ToList()
         });
     }
+
+    internal void RemoveLast()
+    {
+        DataPoints.RemoveAt(DataPoints.Count - 1);
+    }
 }

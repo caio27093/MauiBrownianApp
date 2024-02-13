@@ -57,9 +57,10 @@
                     <Button HorizontalOptions="EndAndExpand" Text="Selecione uma cor" Clicked="SelectColor"/>
                 </StackLayout>
 
-                <StackLayout Orientation="Horizontal">
+                <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
                     <Button Margin="0" Text="Gerar Simulação" HeightRequest="40" Clicked="Button_Clicked"></Button>
                     <Button Margin="20,0,20,0" Text="Limpar Simulação" HeightRequest="40" Clicked="Button_Clicked_1"></Button>
+                    <Button Margin="20,0,20,0" Text="Remover Ultimo Ponto" HeightRequest="40" Clicked="Button_Clicked_2"></Button>
                 </StackLayout>
             </StackLayout>
         </ScrollView>
