@@ -11,7 +11,7 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
         InitializeComponent();
-        _vm = new ();
+        _vm = new();
         this.BindingContext = _vm;
     }
 
@@ -24,7 +24,10 @@ public partial class MainPage : ContentPage
             var resultValidacao = _vm.ValidaCampos();
 
             if (string.IsNullOrEmpty(resultValidacao))
+            {
                 _vm.UpdateChart();
+                ctLine.InvalidateSurface();
+            }
             else
                 await DisplayAlert("Alerta", resultValidacao, "OK");
 
@@ -39,6 +42,10 @@ public partial class MainPage : ContentPage
             _isBusy = true;
 
             var popUp = new ColorPickerPage();
+            popUp.SelectedColor += (cl, obj) =>
+            {
+                _vm.SetColor(obj);
+            };
             await Navigation.PushModalAsync( popUp);
 
             _isBusy = false;

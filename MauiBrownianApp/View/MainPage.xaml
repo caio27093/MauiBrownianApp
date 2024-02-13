@@ -53,7 +53,7 @@
 
                 <Label Text="Selecione uma cor:"/>
                 <StackLayout Orientation="Horizontal">
-                    <StackLayout WidthRequest="150" HeightRequest="70"/>
+                    <StackLayout WidthRequest="150" BackgroundColor="{Binding HexColor,Converter={StaticResource StringToColorConverter}}" HeightRequest="70"/>
                     <Button HorizontalOptions="EndAndExpand" Text="Selecione uma cor" Clicked="SelectColor"/>
                 </StackLayout>
 

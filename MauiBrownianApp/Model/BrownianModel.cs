@@ -2,8 +2,6 @@
 
 public class BrownianModel
 {
-    public string Price { get; set; }
-    public string Volatility { get; set; }
-    public string Average { get; set; }
-    public string Duration { get; set; }
+    public List<double> DataValue { get; set; } = new();
+    public string ColorHex { get; set; }
 }

@@ -12,6 +12,8 @@ public partial class ColorPickerPage : ContentPage
         _vm = new ();
         this.BindingContext = _vm;
     }
+    public event EventHandler<string> SelectedColor;
+
     private async void Back_Tapped(object sender, TappedEventArgs e)
     {
         if (!_isBusy)
@@ -24,7 +26,16 @@ public partial class ColorPickerPage : ContentPage
         }
     }
 
-    void TapGestureRecognizer_Tapped(System.Object sender, Microsoft.Maui.Controls.TappedEventArgs e)
+    async void Button_Clicked(System.Object sender, System.EventArgs e)
     {
+        if (!_isBusy)
+        {
+            _isBusy = true;
+
+            SelectedColor?.Invoke(this, _vm.HexColor);
+            await Navigation.PopModalAsync();
+
+            _isBusy = false;
+        }
     }
 }

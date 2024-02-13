@@ -68,6 +68,7 @@
 	  <None Remove="View\" />
 	  <None Remove="View\ChartSK\" />
 	  <None Remove="View\PopUp\" />
+	  <None Remove="Converter\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Model\" />
@@ -75,5 +76,6 @@
 	  <Folder Include="View\" />
 	  <Folder Include="View\ChartSK\" />
 	  <Folder Include="View\PopUp\" />
+	  <Folder Include="Converter\" />
 	</ItemGroup>
 </Project>

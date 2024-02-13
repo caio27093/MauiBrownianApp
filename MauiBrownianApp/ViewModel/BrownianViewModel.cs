@@ -1,43 +1,51 @@
 ﻿
 using System.Collections.ObjectModel;
+using MauiBrownianApp.Model;
 
 namespace MauiBrownianApp.ViewModel;
 
 public class BrownianViewModel : BaseViewModel
 {
-    public List<double> _data = new List<double>();
-    public List<double> DataPoints
+    private BrownianModel _data = new BrownianModel();
+    public BrownianModel DataPoints
     {
         get => _data;
         set => SetProperty(ref _data, value);
     }
 
-    public double _sigma;
+    private double _sigma;
     public double Sigma
     {
         get => _sigma;
         set => SetProperty(ref _sigma, value);
     }
 
-    public double _mean;
+    private double _mean;
     public double Mean
     {
         get => _mean;
         set => SetProperty(ref _mean, value);
     }
 
-    public double _initialPrice;
+    private double _initialPrice;
     public double InitialPrice
     {
         get => _initialPrice;
         set => SetProperty(ref _initialPrice, value);
     }
 
-    public int _numDays;
+    private int _numDays;
     public int NumDays
     {
         get => _numDays;
         set => SetProperty(ref _numDays, value);
+    }
+
+    private string _hexColor = "#000000";
+    public string HexColor
+    {
+        get => _hexColor;
+        set => SetProperty(ref _hexColor, value);
     }
 
     private double[] GenerateBrownianMotion()
@@ -61,7 +69,7 @@ public class BrownianViewModel : BaseViewModel
 
     internal void UpdateChart()
     {
-        DataPoints = GenerateBrownianMotion().ToList();
+        DataPoints.DataValue = GenerateBrownianMotion().ToList();
     }
 
     internal string ValidaCampos()
@@ -71,5 +79,11 @@ public class BrownianViewModel : BaseViewModel
             return "O tempo deve ser superior a zero dias";
 
         return "";
+    }
+
+    internal void SetColor(string obj)
+    {
+        HexColor = obj;
+        DataPoints.ColorHex = obj;
     }
 }
