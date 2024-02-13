@@ -26,27 +26,37 @@
         </Grid>
         <ScrollView VerticalOptions="End" HeightRequest="200" Padding="0,0,20,0">
             <StackLayout HorizontalOptions="FillAndExpand">
+
                 <Label Text="Preço inicial:"/>
                 <StackLayout Orientation="Horizontal">
                     <Entry WidthRequest="150" Keyboard="Numeric" Text="{Binding Source={x:Reference stepperPrice}, Path=Value}"/>
                     <Stepper Value="{Binding InitialPrice,Mode=TwoWay}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" x:Name="stepperPrice" Increment="10" Maximum="10000000" Minimum="0"/>
                 </StackLayout>
+
                 <Label Text="Volatilidade média(%):"/>
                 <StackLayout Orientation="Horizontal">
                     <Entry WidthRequest="150" Keyboard="Numeric" Text="{Binding Source={x:Reference sliderVolatilidade}, Path=Value}"/>
-                    <Slider Value="{Binding Sigma,Mode=TwoWay}" HorizontalOptions="EndAndExpand" x:Name="sliderVolatilidade" Maximum="100" Minimum="0"/>
+                    <Stepper Value="{Binding Sigma,Mode=TwoWay}" HorizontalOptions="EndAndExpand" x:Name="sliderVolatilidade" Maximum="100" Minimum="0"/>
                 </StackLayout>
+
                 <Label Text="Retorno médio(%):"/>
                 <StackLayout Orientation="Horizontal">
                     <Entry WidthRequest="150" Keyboard="Numeric" Text="{Binding Source={x:Reference sliderReturn}, Path=Value}"/>
-                    <Slider Value="{Binding Mean,Mode=TwoWay}" HorizontalOptions="EndAndExpand" x:Name="sliderReturn" Maximum="100" Minimum="0"/>
+                    <Stepper Value="{Binding Mean,Mode=TwoWay}" HorizontalOptions="EndAndExpand" x:Name="sliderReturn" Maximum="100" Minimum="0"/>
                 </StackLayout>
+
                 <Label Text="Tempo(dias):"/>
                 <StackLayout Orientation="Horizontal">
                     <Entry WidthRequest="150" Keyboard="Numeric" Text="{Binding Source={x:Reference stepperDays}, Path=Value}"/>
                     <Stepper Value="{Binding NumDays,Mode=TwoWay}" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" x:Name="stepperDays" Maximum="365" Minimum="0"/>
                 </StackLayout>
-                
+
+                <Label Text="Selecione uma cor:"/>
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout WidthRequest="150" HeightRequest="70"/>
+                    <Button HorizontalOptions="EndAndExpand" Text="Selecione uma cor" Clicked="SelectColor"/>
+                </StackLayout>
+
                 <StackLayout Orientation="Horizontal">
                     <Button Margin="20" HorizontalOptions="Center" Text="Gerar Simulação" HeightRequest="40" Clicked="Button_Clicked"></Button>
                 </StackLayout>

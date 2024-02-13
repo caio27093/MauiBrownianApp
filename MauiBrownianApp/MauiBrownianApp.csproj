@@ -67,11 +67,13 @@
 	  <None Remove="ViewModel\" />
 	  <None Remove="View\" />
 	  <None Remove="View\ChartSK\" />
+	  <None Remove="View\PopUp\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Model\" />
 	  <Folder Include="ViewModel\" />
 	  <Folder Include="View\" />
 	  <Folder Include="View\ChartSK\" />
+	  <Folder Include="View\PopUp\" />
 	</ItemGroup>
 </Project>

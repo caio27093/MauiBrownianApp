@@ -1,4 +1,5 @@
 ﻿
+using MauiBrownianApp.View.PopUp;
 using MauiBrownianApp.ViewModel;
 
 namespace MauiBrownianApp;
@@ -10,7 +11,7 @@ public partial class MainPage : ContentPage
 	public MainPage()
 	{
         InitializeComponent();
-        _vm = new BrownianViewModel();
+        _vm = new ();
         this.BindingContext = _vm;
     }
 
@@ -31,4 +32,16 @@ public partial class MainPage : ContentPage
         }
     }
 
+    async void SelectColor(System.Object sender, System.EventArgs e)
+    {
+        if (!_isBusy)
+        {
+            _isBusy = true;
+
+            var popUp = new ColorPickerPage();
+            await Navigation.PushModalAsync( popUp);
+
+            _isBusy = false;
+        }
+    }
 }

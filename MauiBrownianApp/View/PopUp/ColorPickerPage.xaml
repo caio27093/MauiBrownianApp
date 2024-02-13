@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiBrownianApp.View.PopUp.ColorPickerPage">
+    
+    <ContentPage.BackgroundColor>
+        <Color x:FactoryMethod="FromRgba">
+            <x:Arguments>
+                <x:Int32>0</x:Int32>
+                <x:Int32>0</x:Int32>
+                <x:Int32>0</x:Int32>
+                <x:Int32>1</x:Int32>
+            </x:Arguments>
+        </Color>
+    </ContentPage.BackgroundColor>
+
+    <Grid BackgroundColor="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="400" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout
+            Grid.Row="0"
+            BackgroundColor="Black"
+            Opacity="0.3">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Back_Tapped" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+        <StackLayout
+            Grid.Row="2"
+            BackgroundColor="Black"
+            Opacity="0.3">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Back_Tapped" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+        <StackLayout
+            Grid.Row="1"
+            BackgroundColor="Black"
+            Opacity="0.3">
+            <StackLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="Back_Tapped" />
+            </StackLayout.GestureRecognizers>
+        </StackLayout>
+        <Border
+            Grid.Row="1"
+            Padding="0"
+            BackgroundColor="#FFF"
+            Stroke="#FFF"
+            StrokeShape="RoundRectangle 7,7,7,7">
+            <StackLayout>
+                <StackLayout HeightRequest="70" Orientation="Horizontal">
+                    <Label
+                        Margin="20,0,0,0"
+                        FontFamily="Poppins-Medium"
+                        FontSize="15"
+                        TextColor="Black"
+                        Text="Fechar"
+                        VerticalOptions="FillAndExpand"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Back_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+                <StackLayout
+                    Margin="20,20,20,20"
+                    VerticalOptions="FillAndExpand">
+                    
+                    <Label TextColor="Black" Text="Vermelho:"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="StartAndExpand" FontSize="18" TextColor="Black" Text="{Binding Red}"/>
+                        <Slider HorizontalOptions="EndAndExpand" x:Name="vermelho" Value="{Binding Red, Mode=TwoWay}" Minimum="0" Maximum="255" ThumbColor="Red"></Slider>
+                    </StackLayout>
+                    
+                    <Label TextColor="Black" Text="Verde:"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="StartAndExpand" FontSize="18"  TextColor="Black" Text="{Binding Green}"/>
+                        <Slider HorizontalOptions="EndAndExpand" x:Name="verde" Value="{Binding Green, Mode=TwoWay}" Minimum="0" Maximum="255" ThumbColor="Green"></Slider>
+                    </StackLayout>
+                    
+                    <Label TextColor="Black" Text="Vermelho:"/>
+                    <StackLayout Orientation="Horizontal">
+                        <Label HorizontalOptions="StartAndExpand" FontSize="18"  TextColor="Black" Text="{Binding Blue}"/>
+                        <Slider HorizontalOptions="EndAndExpand" x:Name="azul" Value="{Binding Blue, Mode=TwoWay}" Minimum="0" Maximum="255" ThumbColor="Blue"></Slider>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout HeightRequest="100" WidthRequest="100">
+                    <Label  TextColor="Black" Text="{Binding HexColor}"></Label>
+
+                </StackLayout>
+                <Button Margin="20,0,20,20" Text="Confirmar"></Button>
+
+            </StackLayout>
+        </Border>
+    </Grid>
+</ContentPage>
