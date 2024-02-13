@@ -24,7 +24,10 @@
                     <chart:LineChart x:Name="ctLine" Data="{Binding DataPoints, Mode=TwoWay}" />
             </Border>
         </Grid>
-        <ScrollView VerticalOptions="FillAndExpand" HeightRequest="200" Padding="0,0,20,0">
+        
+        <Label FontSize="18" Text="Informe os parametros:"></Label>
+
+        <ScrollView VerticalOptions="FillAndExpand" Padding="0,20,20,0">
             <StackLayout HorizontalOptions="FillAndExpand">
 
                 <Label Text="Preço inicial:"/>
